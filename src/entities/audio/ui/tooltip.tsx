@@ -1,5 +1,5 @@
 import { ActionSheet, ActionSheetItem } from "@vkontakte/vkui";
-import {  Download, Heart, Share2, Trash } from "lucide-react";
+import { Download, Heart, Share2, Trash } from "lucide-react";
 import verticalDots from "@/assets/vertical-dots.svg";
 import { useRef, useState } from "react";
 
@@ -36,8 +36,10 @@ function FavoriteItem({ isFavorite }: TooltipProps) {
 }
 
 function DownloadItem({ isDownloaded }: TooltipProps) {
-  if(isDownloaded) {
-    return <ActionSheetItem before={<Trash />}>Удалить с устройства</ActionSheetItem>;
+  if (isDownloaded) {
+    return (
+      <ActionSheetItem before={<Trash />}>Удалить с устройства</ActionSheetItem>
+    );
   }
   return <ActionSheetItem before={<Download />}>Скачать</ActionSheetItem>;
 }

@@ -4,8 +4,11 @@ import { AudioTooltip } from "./tooltip";
 
 type Props = {
   audio: Audio;
+  isDownloaded: boolean;
+  isFavorite: boolean;
 };
-export function AudioCell({ audio }: Props) {
+
+export const AudioCell = ({ audio, ...props }: Props) => {
   return (
     <Cell
       before={<img src={audio.iconHref} className="size-[40px] rounded" />}
@@ -16,11 +19,11 @@ export function AudioCell({ audio }: Props) {
           <span className="text-secondary text-[13px] mr-4">
             {audio.lengthSeconds}
           </span>
-          <AudioTooltip isDownloaded={true} isFavorite={false} />
+          <AudioTooltip {...props} />
         </>
       }
     >
       <h6 className="w-full text-primary">{audio.name}</h6>
     </Cell>
   );
-}
+};

@@ -10,8 +10,7 @@ import {
 } from "@vkontakte/vkui";
 import "@vkontakte/vkui/dist/vkui.css";
 import "./main.css";
-import { AudioCell } from "@/entities/audio";
-import icon from "@/assets/vk-track.png";
+import { AudioList } from "../entities/audio";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -23,15 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <div className="flex flex-col justify-center items-center h-screen">
                 <div className="bg-white p-4 w-[360px]">
                   <Group>
-                    <AudioCell
-                      audio={{
-                        author: "Исполнитель",
-                        name: "Трек",
-                        iconHref: icon,
-                        isPlaying: false,
-                        lengthSeconds: 123,
-                      }}
-                    />
+                    <AudioList />
                   </Group>
                 </div>
               </div>

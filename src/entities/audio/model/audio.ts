@@ -1,7 +1,7 @@
 export type Audio = {
+  id: number;
   name: string;
   author: string;
   iconHref: string;
-  isPlaying?: boolean;
   lengthSeconds: number;
 };
