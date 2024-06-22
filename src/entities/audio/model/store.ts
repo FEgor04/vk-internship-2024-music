@@ -39,6 +39,14 @@ class AudioStore {
   removeFromDownloaded(id: number) {
     this.downloaded = this.downloaded.filter((item) => item !== id);
   }
+
+  play(id: number) {
+    if (id == this.playingAudioId) {
+      this.playingAudioId = undefined;
+      return
+    }
+    this.playingAudioId = id;
+  }
 }
 
 export const audioStore = new AudioStore();

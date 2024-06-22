@@ -8,13 +8,18 @@ export const AudioList = observer(() => {
     <>
       {audios.map((audio) => (
         <AudioCell
+          key={audio.id}
           audio={audio}
           isDownloaded={audioStore.downloaded.includes(audio.id)}
           isFavorite={audioStore.favorites.includes(audio.id)}
           onDownload={() => audioStore.addToDownloaded(audio.id)}
           onFavorite={() => audioStore.addToFavorites(audio.id)}
-          onRemoveFromDownloaded={() => audioStore.removeFromDownloaded(audio.id)}
+          onRemoveFromDownloaded={() =>
+            audioStore.removeFromDownloaded(audio.id)
+          }
           onRemoveFromFavorite={() => audioStore.removeFromFavorites(audio.id)}
+          onPlay={() => audioStore.play(audio.id)}
+          isPlaying={audioStore.playingAudioId == audio.id}
         />
       ))}
     </>
