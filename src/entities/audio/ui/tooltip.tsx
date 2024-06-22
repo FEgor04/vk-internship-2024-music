@@ -4,8 +4,12 @@ import verticalDots from "@/assets/vertical-dots.svg";
 import { useRef, useState } from "react";
 
 type TooltipProps = {
-  isFavorite: boolean;
   isDownloaded: boolean;
+  isFavorite: boolean;
+  onDownload: () => void;
+  onFavorite: () => void;
+  onRemoveFromFavorite: () => void;
+  onRemoveFromDownloaded: () => void;
 };
 
 export function AudioTooltip(props: TooltipProps) {
@@ -25,21 +29,35 @@ export function AudioTooltip(props: TooltipProps) {
   );
 }
 
-function FavoriteItem({ isFavorite }: TooltipProps) {
+function FavoriteItem({
+  isFavorite,
+  onFavorite,
+  onRemoveFromFavorite,
+}: TooltipProps) {
   return (
     <ActionSheetItem
       before={<Heart fill={isFavorite ? "#2688EB" : "#ffffff"} />}
+      onClick={isFavorite ? onRemoveFromFavorite : onFavorite}
     >
       Нравится
     </ActionSheetItem>
   );
 }
-
-function DownloadItem({ isDownloaded }: TooltipProps) {
+function DownloadItem({
+  isDownloaded,
+  onDownload,
+  onRemoveFromDownloaded,
+}: TooltipProps) {
   if (isDownloaded) {
     return (
-      <ActionSheetItem before={<Trash />}>Удалить с устройства</ActionSheetItem>
+      <ActionSheetItem onClick={onRemoveFromDownloaded} before={<Trash />}>
+        Удалить с устройства
+      </ActionSheetItem>
     );
   }
-  return <ActionSheetItem before={<Download />}>Скачать</ActionSheetItem>;
+  return (
+    <ActionSheetItem onClick={onDownload} before={<Download />}>
+      Скачать
+    </ActionSheetItem>
+  );
 }

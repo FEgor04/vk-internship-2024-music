@@ -12,7 +12,7 @@ class AudioStore {
     makeAutoObservable(this);
     this.favorites = [];
     this.downloaded = [];
-    this.playingAudioId = undefined
+    this.playingAudioId = undefined;
     this.audios = [
       {
         id: 1,

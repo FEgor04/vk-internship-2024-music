@@ -4,9 +4,7 @@ import { AudioTooltip } from "./tooltip";
 
 type Props = {
   audio: Audio;
-  isDownloaded: boolean;
-  isFavorite: boolean;
-};
+} & React.ComponentProps<typeof AudioTooltip>;
 
 export const AudioCell = ({ audio, ...props }: Props) => {
   return (
