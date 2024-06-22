@@ -1,6 +1,6 @@
-import { Cell, Popover } from "@vkontakte/vkui";
+import { Cell } from "@vkontakte/vkui";
 import { Audio } from "../model/audio";
-import verticalDots from "@/assets/vertical-dots.svg";
+import { AudioTooltip } from "./tooltip";
 
 type Props = {
   audio: Audio;
@@ -16,19 +16,11 @@ export function AudioCell({ audio }: Props) {
           <span className="text-secondary text-[13px] mr-4">
             {audio.lengthSeconds}
           </span>
-          <AudioTooltip audio={audio} />
+          <AudioTooltip isDownloaded={true} isFavorite={false} />
         </>
       }
     >
       <h6 className="w-full text-primary">{audio.name}</h6>
     </Cell>
-  );
-}
-
-function AudioTooltip({ audio }: Props) {
-  return (
-    <Popover trigger="click" role="tooltip">
-      <img src={verticalDots} />
-    </Popover>
   );
 }
