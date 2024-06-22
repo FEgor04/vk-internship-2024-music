@@ -17,9 +17,16 @@ export function AudioTooltip(props: TooltipProps) {
   const ref = useRef<HTMLImageElement>(null);
   return (
     <>
-      <img ref={ref} src={verticalDots} onClick={() => setIsOpen(true)} />
+      <img
+        ref={ref}
+        src={verticalDots}
+        onClick={(e) => {
+          setIsOpen(true);
+          e.preventDefault();
+        }}
+      />
       {isOpen && (
-        <ActionSheet toggleRef={ref} onClose={() => setIsOpen(false)}>
+        <ActionSheet mode="sheet" toggleRef={ref} onClose={() => setIsOpen(false)}>
           <FavoriteItem {...props} />
           <DownloadItem {...props} />
           <ActionSheetItem before={<Share2 />}>Поделиться</ActionSheetItem>

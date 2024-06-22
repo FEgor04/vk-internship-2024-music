@@ -2,6 +2,7 @@ import { Cell } from "@vkontakte/vkui";
 import { Audio } from "../model/audio";
 import { AudioTooltip } from "./tooltip";
 import audioPlaying from "@/assets/audio-playing.svg";
+import { formatDuration, intervalToDuration } from "date-fns";
 
 type Props = {
   audio: Audio;
@@ -15,24 +16,16 @@ export const AudioCell = ({ audio, isPlaying, onPlay, ...props }: Props) => {
       before={<AudioIcon iconHref={audio.iconHref} isPlaying={isPlaying} />}
       onClick={onPlay}
       subtitle={audio.author}
+      indicator={<AudioLength lengthSeconds={audio.lengthSeconds} />}
       width="100%"
-      after={
-        <>
-          <span className="text-secondary text-[13px] mr-4">
-            {audio.lengthSeconds}
-          </span>
-          <AudioTooltip {...props} />
-        </>
-      }
+      after={<AudioTooltip {...props} />}
     >
-      <h6 className="w-full text-primary">
-        {audio.name} {isPlaying ? "playing" : "not playng"}
-      </h6>
+      <h6 className="w-full text-primary">{audio.name}</h6>
     </Cell>
   );
 };
 
-export function AudioIcon({
+function AudioIcon({
   isPlaying,
   iconHref,
 }: {
@@ -49,4 +42,14 @@ export function AudioIcon({
     );
   }
   return <img src={iconHref} className="size-[40px] rounded" />;
+}
+
+function AudioLength({ lengthSeconds }: { lengthSeconds: number }) {
+  const minutes = Math.floor(lengthSeconds / 60);
+  const seconds = lengthSeconds % 60;
+  return (
+    <span className="mr-2">
+      {minutes}:{seconds.toString().padStart(2, "0")}
+    </span>
+  );
 }
