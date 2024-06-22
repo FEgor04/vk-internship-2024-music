@@ -1,4 +1,4 @@
-export type Track = {
+export type Audio = {
   name: string;
   author: string;
   iconHref: string;
