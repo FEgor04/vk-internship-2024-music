@@ -1,30 +1,37 @@
-# React + TypeScript + Vite
+# Тестовое задание на стажировку ВКонтакт
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Задание
 
-Currently, two official plugins are available:
+Необходимо реализовать виджет для воспроизведения аудиозаписи по макету.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Макет в Figma: https://www.figma.com/design/9d3ErSuSrLY1qCuSRPk80C/AudioCell?m=dev&node-id=0-1&t=iqVcRzScrwfGr94t-1
 
-## Expanding the ESLint configuration
+В качестве аудиозаписи можно использовать любую аудиозапись (как загруженную в репозиторий, так и из внешнего ресурса, на ваш выбор).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Условия
 
-- Configure the top-level `parserOptions` property like this:
+- Минимальные версии браузеров https://caniuse.com/es6-module
+- Использовать React и mobx
+- Использовать VK UI (можно найти тут https://vkcom.github.io/VKUI/)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Критерии оценки
+- Результат должен быть рабочим (аудиозапись воспроизводится, ставится на паузу, UI реагирует на изменение состояния)
+- Pixel Perfect
+- Чистота кода
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Рекомендации:
+- Можно использовать готовые шаблоны приложений
+- Можно использовать библиотеки из npm
+- Стоит уделить внимание принципам проектирования: KISS, SOLID и др.
+
+В качестве результата необходимо предоставить репозиторий с исходным на GitHub и ссылку на тестовый стенд, для которого можно использовать https://pages.github.com/.
+
+### Стэк
+
+- React, TypeScript, mobx
+- TailwindCSS, VK UI
+- Vite, eslint, prettier
+
+### Ссылка
+
+TODO
