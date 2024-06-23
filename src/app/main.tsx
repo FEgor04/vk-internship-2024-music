@@ -10,6 +10,7 @@ import {
 import "@vkontakte/vkui/dist/vkui.css";
 import "./main.css";
 import { AudioList } from "../entities/audio";
+import { Analytics } from "@vercel/analytics/react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -28,5 +29,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </AppRoot>
       </AdaptivityProvider>
     </ConfigProvider>
+    <Analytics />
   </React.StrictMode>
 );
