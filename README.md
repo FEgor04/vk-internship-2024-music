@@ -26,12 +26,20 @@
 
 В качестве результата необходимо предоставить репозиторий с исходным на GitHub и ссылку на тестовый стенд, для которого можно использовать https://pages.github.com/.
 
-### Стэк
+## Стэк
 
 - React, TypeScript, mobx
 - TailwindCSS, VK UI
 - Vite, eslint, prettier
 
-### Ссылка
+## Ссылка
 
 TODO
+
+## Запуск
+
+```
+pnpm install
+pnpm run build
+pnpm run preview
+```
