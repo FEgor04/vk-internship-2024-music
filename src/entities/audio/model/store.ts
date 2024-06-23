@@ -29,6 +29,15 @@ class AudioStore {
         lengthSeconds: 123,
         href: pirat,
       },
+      {
+        id: 2,
+        name: "Я поднимаю свою голову вверх",
+        author: "Серега Пират",
+        iconHref:
+          "https://cdns-images.dzcdn.net/images/cover/151533e1a64112c25e34597e68b2ffad/500x500.jpg",
+        lengthSeconds: 166,
+        href: pirat
+      },
     ];
   }
 

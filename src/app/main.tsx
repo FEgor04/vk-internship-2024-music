@@ -21,9 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Panel id="audio">
               <div className="flex flex-col justify-center items-center h-screen">
                 <div className="bg-white p-4 w-[360px]">
-                  <Group>
-                    <AudioList />
-                  </Group>
+                  <AudioList />
                 </div>
               </div>
             </Panel>

@@ -29,7 +29,7 @@ export const AudioCell = observer(({ audio }: Props) => {
       width="100%"
       after={<AudioTooltip id={audio.id} />}
     >
-      <h6 className="w-full text-primary">{audio.name}</h6>
+      <h6 className="w-full text-primary text-ellipsis whitespace-nowrap max-w-[160px]">{audio.name}</h6>
     </Cell>
   );
 });
@@ -44,13 +44,16 @@ function AudioIcon({
   if (isPlaying) {
     return (
       <div className="relative rounded overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full rounded bg-black opacity-60" />
+        <div className="absolute top-0 left-0 w-full h-full rounded bg-black opacity-60 animate-pulse" />
         <img src={audioPlaying} className="size-4 inset-3 rounded absolute" />
-        <img src={iconHref} className="size-[40px] rounded" />
+        <img
+          src={iconHref}
+          className="size-[40px] object-cover aspect-square rounded"
+        />
       </div>
     );
   }
-  return <img src={iconHref} className="size-[40px] rounded" />;
+  return <img src={iconHref} className="size-[40px] object-cover aspect-square rounded" />;
 }
 
 function AudioLength({ lengthSeconds }: { lengthSeconds: number }) {
