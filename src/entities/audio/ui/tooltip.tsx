@@ -2,14 +2,11 @@ import { ActionSheet, ActionSheetItem } from "@vkontakte/vkui";
 import { Download, Heart, Share2, Trash } from "lucide-react";
 import verticalDots from "@/assets/vertical-dots.svg";
 import { useRef, useState } from "react";
+import { audioStore } from "../model/store";
+import { observer } from "mobx-react";
 
 type TooltipProps = {
-  isDownloaded: boolean;
-  isFavorite: boolean;
-  onDownload: () => void;
-  onFavorite: () => void;
-  onRemoveFromFavorite: () => void;
-  onRemoveFromDownloaded: () => void;
+  id: number;
 };
 
 export function AudioTooltip(props: TooltipProps) {
@@ -26,7 +23,11 @@ export function AudioTooltip(props: TooltipProps) {
         }}
       />
       {isOpen && (
-        <ActionSheet mode="sheet" toggleRef={ref} onClose={() => setIsOpen(false)}>
+        <ActionSheet
+          mode="sheet"
+          toggleRef={ref}
+          onClose={() => setIsOpen(false)}
+        >
           <FavoriteItem {...props} />
           <DownloadItem {...props} />
           <ActionSheetItem before={<Share2 />}>Поделиться</ActionSheetItem>
@@ -36,11 +37,10 @@ export function AudioTooltip(props: TooltipProps) {
   );
 }
 
-function FavoriteItem({
-  isFavorite,
-  onFavorite,
-  onRemoveFromFavorite,
-}: TooltipProps) {
+function FavoriteItem({ id }: TooltipProps) {
+  const isFavorite = audioStore.favorites.includes(id);
+  const onRemoveFromFavorite = () => audioStore.removeFromFavorites(id);
+  const onFavorite = () => audioStore.addToFavorites(id);
   return (
     <ActionSheetItem
       before={<Heart fill={isFavorite ? "#2688EB" : "#ffffff"} />}
@@ -50,11 +50,10 @@ function FavoriteItem({
     </ActionSheetItem>
   );
 }
-function DownloadItem({
-  isDownloaded,
-  onDownload,
-  onRemoveFromDownloaded,
-}: TooltipProps) {
+const DownloadItem = observer(({ id }: TooltipProps) => {
+  const isDownloaded = audioStore.downloaded.includes(id);
+  const onRemoveFromDownloaded = () => audioStore.removeFromDownloaded(id);
+  const onDownload = () => audioStore.addToDownloaded(id);
   if (isDownloaded) {
     return (
       <ActionSheetItem onClick={onRemoveFromDownloaded} before={<Trash />}>
@@ -67,4 +66,4 @@ function DownloadItem({
       Скачать
     </ActionSheetItem>
   );
-}
+});

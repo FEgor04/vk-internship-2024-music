@@ -2,27 +2,32 @@ import { Cell } from "@vkontakte/vkui";
 import { Audio } from "../model/audio";
 import { AudioTooltip } from "./tooltip";
 import audioPlaying from "@/assets/audio-playing.svg";
+import { useAudio } from "../../../shared/hooks/use-audio";
+import { audioStore } from "../model/store";
+import { observer } from "mobx-react";
 
 type Props = {
   audio: Audio;
-  onPlay: () => void;
-  isPlaying: boolean;
-} & React.ComponentProps<typeof AudioTooltip>;
+};
 
-export const AudioCell = ({ audio, isPlaying, onPlay, ...props }: Props) => {
+export const AudioCell = observer(({ audio }: Props) => {
+  const isPlaying =
+    audioStore.selectedAudio?.id == audio.id &&
+    audioStore.selectedAudio.isPlaying;
+  useAudio(audio.href, isPlaying, audioStore.pause);
   return (
     <Cell
       before={<AudioIcon iconHref={audio.iconHref} isPlaying={isPlaying} />}
-      onClick={onPlay}
+      onClick={() => audioStore.play(audio.id)}
       subtitle={audio.author}
       indicator={<AudioLength lengthSeconds={audio.lengthSeconds} />}
       width="100%"
-      after={<AudioTooltip {...props} />}
+      after={<AudioTooltip id={audio.id} />}
     >
       <h6 className="w-full text-primary">{audio.name}</h6>
     </Cell>
   );
-};
+});
 
 function AudioIcon({
   isPlaying,

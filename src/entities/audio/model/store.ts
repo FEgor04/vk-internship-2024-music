@@ -7,13 +7,19 @@ class AudioStore {
   favorites: Array<number>;
   downloaded: Array<number>;
   audios: Array<Audio>;
-  playingAudioId: number | undefined;
+  selectedAudio:
+    | {
+        id: number;
+        isPlaying: boolean;
+        curentTime: number;
+      }
+    | undefined;
 
   constructor() {
     makeAutoObservable(this);
     this.favorites = [];
     this.downloaded = [];
-    this.playingAudioId = undefined;
+    this.selectedAudio = undefined;
     this.audios = [
       {
         id: 1,
@@ -43,11 +49,20 @@ class AudioStore {
   }
 
   play(id: number) {
-    if (id == this.playingAudioId) {
-      this.playingAudioId = undefined;
+    if (this.selectedAudio?.id == id) {
+      this.selectedAudio.isPlaying = !this.selectedAudio.isPlaying;
       return;
     }
-    this.playingAudioId = id;
+    this.selectedAudio = {
+      id,
+      isPlaying: true,
+      curentTime: 0,
+    };
+  }
+
+  pause() {
+    if (!this.selectedAudio) return;
+    this.selectedAudio.isPlaying = false;
   }
 }
 
