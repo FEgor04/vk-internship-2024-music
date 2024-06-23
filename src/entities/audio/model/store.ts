@@ -1,6 +1,7 @@
 import { makeAutoObservable } from "mobx";
 import { Audio } from "./audio";
 import defaultIcon from "@/assets/vk-track.png";
+import pirat from "@/assets/pirat.mp3";
 
 class AudioStore {
   favorites: Array<number>;
@@ -20,6 +21,7 @@ class AudioStore {
         author: "Исполнитель",
         iconHref: defaultIcon,
         lengthSeconds: 123,
+        href: pirat,
       },
     ];
   }
@@ -43,7 +45,7 @@ class AudioStore {
   play(id: number) {
     if (id == this.playingAudioId) {
       this.playingAudioId = undefined;
-      return
+      return;
     }
     this.playingAudioId = id;
   }

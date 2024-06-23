@@ -4,4 +4,5 @@ export type Audio = {
   author: string;
   iconHref: string;
   lengthSeconds: number;
+  href: string;
 };

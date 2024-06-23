@@ -2,7 +2,6 @@ import { Cell } from "@vkontakte/vkui";
 import { Audio } from "../model/audio";
 import { AudioTooltip } from "./tooltip";
 import audioPlaying from "@/assets/audio-playing.svg";
-import { formatDuration, intervalToDuration } from "date-fns";
 
 type Props = {
   audio: Audio;
