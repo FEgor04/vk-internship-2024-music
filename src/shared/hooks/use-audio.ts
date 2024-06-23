@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 
 export function useAudio(
   href: string,
+  currentTime: number,
   isPlaying: boolean,
   setIsPlaying: (isPlaying: boolean) => void
 ) {
@@ -14,6 +15,10 @@ export function useAudio(
       audio.pause();
     }
   }, [isPlaying, audio]);
+
+  useEffect(() => {
+    audio.currentTime = currentTime;
+  }, [currentTime, audio]);
 
   const setNotPlaying = () => setIsPlaying(false);
 

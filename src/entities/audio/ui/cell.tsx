@@ -14,7 +14,12 @@ export const AudioCell = observer(({ audio }: Props) => {
   const isPlaying =
     audioStore.selectedAudio?.id == audio.id &&
     audioStore.selectedAudio.isPlaying;
-  useAudio(audio.href, isPlaying, audioStore.pause);
+  useAudio(
+    audio.href,
+    audioStore.selectedAudio?.curentTime ?? 0,
+    isPlaying,
+    audioStore.pause
+  );
   return (
     <Cell
       before={<AudioIcon iconHref={audio.iconHref} isPlaying={isPlaying} />}
