@@ -34,7 +34,7 @@
 
 ## Ссылка
 
-TODO
+https://vk-internship-2024-music.vercel.app/
 
 ## Запуск
 
